@@ -103,6 +103,7 @@ def agregar_codigo(lista_codigo):
         "nombre": nombre_plan,
         "duracion": duracion_meses,
         "precio": precio,
+        "pagado": False
     }
     lista_codigo.append(planes)
     print(f"Registrado con exito {planes}")
