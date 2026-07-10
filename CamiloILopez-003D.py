@@ -115,3 +115,35 @@ def buscar_codigo(lista_codigo, busqueda_codigo):
     return -1
 
 
+def eliminar_codigo(lista_codigo):
+    nom = int(input("Ingrese codigo a eliminar: "))
+    indice = buscar_codigo(lista_codigo, nom)
+    if indice == -1:
+        print ("Error codigo no encontrado. ")
+        return -1
+    else:
+        lista_codigo.pop(indice)
+        print(f"Codigo encontrado en la posicion {indice}")
+
+def main():
+    lista_codigo = {
+        'F001': [14990, 30],
+        'F002': [22990, 10],
+        'F003': [39990, 0],
+        'F004': [35990, 6],
+        'F005': [159990, 2],
+        'F006': [18990, 15],
+        }
+    menuu()
+    opcio = leer_opcion()
+    while True:
+        match opcio:
+            case 3: buscar_codigo(lista_codigo)
+            case 4: agregar_codigo(lista_codigo)
+            case 5: eliminar_codigo(lista_codigo)
+            case 6:
+                print("Programa Finalizado.")
+                break
+
+main()
+
