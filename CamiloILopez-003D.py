@@ -1,30 +1,38 @@
+plan = ["MENSUAL", "mensual", "TRIMESTRAL", "trimestral", "ANUAL", "anual",]
 
+planes = {
+'F001': ['Plan Básico', 'mensual', 1, False, False, 'libre'],
+'F002': ['Plan Full', 'mensual', 1, True, True, 'libre'],
+'F003': ['Plan Estudiante', 'trimestral', 3, False, True, 'tarde'],
+'F004': ['Plan Senior', 'trimestral', 3, True, False, 'mañana'],
+'F005': ['Plan Anual Pro', 'anual', 12, True, True, 'libre'],
+'F006': ['Plan Nocturno', 'mensual', 1, False, True, 'noche'],
+}
 def menuu():
-    print("MENU PRINCIPAL" \
-    "1. Cupos por tipo de plan." \
-    "2. Busqueda de planes por rango de precio." \
-    "3. Actualizar precio del plan." \
-    "4. Agregar plan." \
-    "5. Eliminar plan." \
-    "6. Salir"
+    print(" MENU PRINCIPAL   "
+    "   1. Cupos por tipo de plan. "
+    "   2. Busqueda de planes por rango de precio. "
+    "   3. Actualizar precio del plan. "
+    "   4. Agregar plan. "
+    "   5. Eliminar plan. "
+    "   6. Salir "
     )
 
 def leer_opcion():
     while True:
         try:
-            op = int("Ingrese una opcion: ")
-            if 1 <= op <= 6:
-                return
+            op = int(input("Ingrese una opcion: "))
+            if  1 <= op <= 6:
+                return op
         except ValueError:
-            print("Error: fuera de rango. ")
-
+            print("Error")
 def validar_precio(precio):
     if precio > 0:
         return True
     return False
 
 def validar_plan(plan):
-    if plan ["MENSUAL", "TRIMESTRAL", "ANUAL"].lower():
+    if plan.lower():
         return True
     return False
 
@@ -40,6 +48,11 @@ def nombre_plan(nombreplan):
 
 def duracion(duracionmes):
     if duracionmes > 0:
+        return True
+    return False
+
+def preciomaximomin(maxmin):
+    if maxmin >= 0:
         return True
     return False
 
@@ -59,7 +72,7 @@ def agregar_codigo(lista_codigo):
     if not validar_texto(codigo_plan):
         return
     print("Error: no puede estar vacio o contener espacios. ")
-    
+        
     nombre_plan = input("Ingrese nombre del plan: ")
     if not validar_texto(nombre_plan):
         print("Error: no debe estar vacio ni contener espacios.")
@@ -70,7 +83,7 @@ def agregar_codigo(lista_codigo):
         print("Error escriba uno de los seleccionados en pantalla.")
         return
     
-    duracion_meses = int("Ingrese la duracion: ")
+    duracion_meses = int(input("Ingrese la duracion: "))
     if not duracion(duracion_meses):
         print("Error: ingrese numero entero.")
         return
@@ -85,11 +98,20 @@ def agregar_codigo(lista_codigo):
             return
         plan_mensual = int
 
-    nuevocupo = {
+    planes = {
         "codigo": codigo_plan,
         "nombre": nombre_plan,
         "duracion": duracion_meses,
         "precio": precio,
     }
-    lista_codigo.append(nuevocupo)
-    print(f"Registrado con exito {nuevocupo}")
+    lista_codigo.append(planes)
+    print(f"Registrado con exito {planes}")
+
+def buscar_codigo(lista_codigo, busqueda_codigo):
+    op = int(input("Ingrese codigo a buscar: "))
+    for i in range(len(lista_codigo, op)):
+        if lista_codigo[i]["codigo"].lower() == busqueda_codigo.lower():
+            return i
+    return -1
+
+
